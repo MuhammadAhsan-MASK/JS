@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>MY Website</h1>
+
+  <script>
+    // Q1: Declare age variable and show in alert
+    var age = 23;
+    alert("I am " + age + " years old");
+
+    // Q2: Visitor count (can use localStorage to persist it)
+    var visitCount = localStorage.getItem('visitCount') || 0;
+    visitCount++;
+    localStorage.setItem('visitCount', visitCount);
+    document.write("You have visited this site " + visitCount + " times.<br>");
+
+    // Q3: Birth year message
+    var birthYear = 2002;
+    document.write("My birth year is " + birthYear + "<br>");
+    document.write("Data type of my declared variable is " + typeof birthYear + "<br>");
+
+    // Q4: Online store order message
+    var visitorName = "Sir Hamza";
+    var productTitle = "T-shirt(s)";
+    var quantity = 5;
+    document.write(visitorName + " ordered " + quantity + " " + productTitle + " on HS Clothing store.");
+  </script>
+
+</body>
+</html>
