@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Assignment 38–44 - JavaScript</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    h3 { margin-top: 30px; }
+    input, button { margin: 5px; }
+    .output { margin: 10px 0; padding: 10px; background: #f0f0f0; }
+  </style>
+</head>
+<body>
+
+  <h1>JavaScript Assignment (38–44)</h1>
+
+  <h3>1. Power Function</h3>
+  <input type="number" id="powerA" placeholder="Base">
+  <input type="number" id="powerB" placeholder="Exponent">
+  <button onclick="runPower()">Calculate</button>
+  <div class="output" id="powerResult"></div>
+
+  <h3>2. Leap Year Checker</h3>
+  <input type="number" id="leapYear" placeholder="Enter year">
+  <button onclick="checkLeapYear()">Check</button>
+  <div class="output" id="leapResult"></div>
+
+  <h3>3. Triangle Area</h3>
+  <input type="number" id="sideA" placeholder="Side a">
+  <input type="number" id="sideB" placeholder="Side b">
+  <input type="number" id="sideC" placeholder="Side c">
+  <button onclick="runTriangle()">Calculate</button>
+  <div class="output" id="triangleResult"></div>
+
+  <h3>4. Marks Average and Percentage</h3>
+  <input type="number" id="mark1" placeholder="Marks 1">
+  <input type="number" id="mark2" placeholder="Marks 2">
+  <input type="number" id="mark3" placeholder="Marks 3">
+  <button onclick="runMarks()">Calculate</button>
+  <div class="output" id="marksResult"></div>
+
+  <h3>5. Custom indexOf (Single Char)</h3>
+  <input type="text" id="inputStr" placeholder="Text">
+  <input type="text" id="inputChar" maxlength="1" placeholder="Char">
+  <button onclick="runIndexOf()">Find Index</button>
+  <div class="output" id="indexResult"></div>
+
+  <h3>6. Delete Vowels</h3>
+  <input type="text" id="sentence" placeholder="Sentence (max 25 chars)" maxlength="25">
+  <button onclick="removeVowels()">Remove</button>
+  <div class="output" id="vowelResult"></div>
+
+  <h3>7. Count Successive Vowels</h3>
+  <input type="text" id="vowelLine" placeholder="Enter text">
+  <button onclick="countPairs()">Count Pairs</button>
+  <div class="output" id="pairResult"></div>
+
+  <h3>8. Distance Conversion</h3>
+  <input type="number" id="distanceKm" placeholder="Distance (km)">
+  <button onclick="convertDistance()">Convert</button>
+  <div class="output" id="distanceResult"></div>
+
+  <h3>9. Overtime Pay</h3>
+  <input type="number" id="workHours" placeholder="Total Hours Worked">
+  <button onclick="calcOvertime()">Calculate</button>
+  <div class="output" id="overtimeResult"></div>
+
+  <h3>10. Currency Notes</h3>
+  <input type="number" id="amount" placeholder="Amount in Rs.">
+  <button onclick="getNotes()">Calculate</button>
+  <div class="output" id="notesResult"></div>
+
+  <script>
+    // Q1
+    function power(a, b) {
+      return Math.pow(a, b);
+    }
+    function runPower() {
+      const a = +document.getElementById('powerA').value;
+      const b = +document.getElementById('powerB').value;
+      document.getElementById('powerResult').textContent = "Result: " + power(a, b);
+    }
+
+    // Q2
+    function isLeapYear(year) {
+      return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+    }
+    function checkLeapYear() {
+      const year = +document.getElementById('leapYear').value;
+      document.getElementById('leapResult').textContent = isLeapYear(year) ? "Leap Year" : "Not a Leap Year";
+    }
+
+    // Q3
+    function calculateS(a, b, c) {
+      return (a + b + c) / 2;
+    }
+    function areaOfTriangle(a, b, c) {
+      let s = calculateS(a, b, c);
+      return Math.sqrt(s * (s - a) * (s - b) * (s - c));
+    }
+    function runTriangle() {
+      const a = +document.getElementById('sideA').value;
+      const b = +document.getElementById('sideB').value;
+      const c = +document.getElementById('sideC').value;
+      document.getElementById('triangleResult').textContent = "Area: " + areaOfTriangle(a, b, c).toFixed(2);
+    }
+
+    // Q4
+    function average(m1, m2, m3) {
+      return (m1 + m2 + m3) / 3;
+    }
+    function percentage(m1, m2, m3) {
+      return ((m1 + m2 + m3) / 300) * 100;
+    }
+    function runMarks() {
+      const m1 = +document.getElementById('mark1').value;
+      const m2 = +document.getElementById('mark2').value;
+      const m3 = +document.getElementById('mark3').value;
+      document.getElementById('marksResult').innerHTML =
+        `Average: ${average(m1, m2, m3).toFixed(2)}<br>Percentage: ${percentage(m1, m2, m3).toFixed(2)}%`;
+    }
+
+    // Q5
+    function customIndexOf(str, char) {
+      for (let i = 0; i < str.length; i++) {
+        if (str[i] === char) return i;
+      }
+      return -1;
+    }
+    function runIndexOf() {
+      const str = document.getElementById('inputStr').value;
+      const ch = document.getElementById('inputChar').value;
+      const index = customIndexOf(str, ch);
+      document.getElementById('indexResult').textContent = index >= 0 ? `Found at index: ${index}` : "Not found";
+    }
+
+    // Q6
+    function deleteVowels(sentence) {
+      return sentence.replace(/[aeiouAEIOU]/g, '');
+    }
+    function removeVowels() {
+      const sent = document.getElementById('sentence').value;
+      document.getElementById('vowelResult').textContent = "Result: " + deleteVowels(sent);
+    }
+
+    // Q7
+    function countSuccessiveVowels(str) {
+      let count = 0;
+      str = str.toLowerCase();
+      for (let i = 0; i < str.length - 1; i++) {
+        let pair = str[i] + str[i + 1];
+        if ("aeiou".includes(str[i]) && "aeiou".includes(str[i + 1])) {
+          count++;
+        }
+      }
+      return count;
+    }
+    function countPairs() {
+      const line = document.getElementById('vowelLine').value;
+      document.getElementById('pairResult').textContent = "Pairs: " + countSuccessiveVowels(line);
+    }
+
+    // Q8
+    function convertToMeters(km) { return km * 1000; }
+    function convertToFeet(km) { return km * 3280.84; }
+    function convertToInches(km) { return km * 39370.1; }
+    function convertToCentimeters(km) { return km * 100000; }
+    function convertDistance() {
+      const km = +document.getElementById('distanceKm').value;
+      document.getElementById('distanceResult').innerHTML =
+        `Meters: ${convertToMeters(km)}<br>
+         Feet: ${convertToFeet(km).toFixed(2)}<br>
+         Inches: ${convertToInches(km).toFixed(2)}<br>
+         Centimeters: ${convertToCentimeters(km)}`;
+    }
+
+    // Q9
+    function calculateOvertime(hoursWorked) {
+      if (hoursWorked > 40) {
+        return (hoursWorked - 40) * 12;
+      } else return 0;
+    }
+    function calcOvertime() {
+      const hrs = +document.getElementById('workHours').value;
+      document.getElementById('overtimeResult').textContent = "Overtime Pay: Rs. " + calculateOvertime(hrs);
+    }
+
+  </script>
+
+</body>
+</html>

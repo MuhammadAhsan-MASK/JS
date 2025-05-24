@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Events Assignment</title>
+  <style>
+    table {
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #333;
+    }
+    button {
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>1. Alert on Link Click</h2>
+  <a href="#" onclick="showAlert()">Click me</a>
+
+  <h2>2. Mobile Images with Alert</h2>
+  <img src="./images/iphone-410311_1280.jpg" onclick="showMobileAlert('Mobile 1')">
+  <img src="./images/nokia-1280-1502601_1280.jpg" onclick="showMobileAlert('Mobile 2')">
+  <img src="./images/two-pin-3509490_1280.jpg" onclick="showMobileAlert('Mobile 3')">
+
+  <h2>3. Student Records Table with Delete Button</h2>
+  <table id="studentTable">
+    <tr><th>Name</th><th>Age</th><th>Action</th></tr>
+    <tr><td>Ali</td><td>20</td><td><button onclick="deleteRow(this)">Delete</button></td></tr>
+    <tr><td>Ahmed</td><td>21</td><td><button onclick="deleteRow(this)">Delete</button></td></tr>
+    <tr><td>Mark</td><td>22</td><td><button onclick="deleteRow(this)">Delete</button></td></tr>
+    <tr><td>Sara</td><td>23</td><td><button onclick="deleteRow(this)">Delete</button></td></tr>
+    <tr><td>Zain</td><td>24</td><td><button onclick="deleteRow(this)">Delete</button></td></tr>
+    <tr><td>Noor</td><td>25</td><td><button onclick="deleteRow(this)">Delete</button></td></tr>
+    <tr><td>Aliya</td><td>20</td><td><button onclick="deleteRow(this)">Delete</button></td></tr>
+    <tr><td>Bilal</td><td>26</td><td><button onclick="deleteRow(this)">Delete</button></td></tr>
+    <tr><td>Hira</td><td>21</td><td><button onclick="deleteRow(this)">Delete</button></td></tr>
+    <tr><td>Usman</td><td>22</td><td><button onclick="deleteRow(this)">Delete</button></td></tr>
+  </table>
+
+  <h2>4. Image Change on Mouse Events</h2>
+  <img id="hoverImg" src="./images/iphone-410311_1280.jpg"
+       onmouseover="changeImage()"
+       onmouseout="resetImage()" width="200">
+
+  <h2>5. Counter Increase/Decrease</h2>
+  <p>Counter: <span id="counter">0</span></p>
+  <button onclick="increase()">Increase</button>
+  <button onclick="decrease()">Decrease</button>
+
+  <script>
+    // Q1
+    function showAlert() {
+      alert("Link clicked!");
+    }
+
+    // Q2
+    function showMobileAlert(mobileName) {
+      alert("You clicked on " + mobileName);
+    }
+
+    // Q3
+    function deleteRow(button) {
+      let row = button.parentNode.parentNode;
+      row.parentNode.removeChild(row);
+    }
+
+    // Q4
+    function changeImage() {
+      document.getElementById("hoverImg").src = "./images/nokia-1280-1502601_1280.jpg";
+    }
+
+    function resetImage() {
+      document.getElementById("hoverImg").src = "./images/iphone-410311_1280.jpg";
+    }
+
+    // Q5
+    let count = 0;
+    function increase() {
+      count++;
+      document.getElementById("counter").innerText = count;
+    }
+
+    function decrease() {
+      count--;
+      document.getElementById("counter").innerText = count;
+    }
+  </script>
+
+</body>
+</html>
